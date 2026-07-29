@@ -1,146 +1,218 @@
 # ✈️ AirVista — Flight Price Prediction
 
-**Tool:** Python, Flask, Machine Learning &nbsp;|&nbsp; **Type:** Web Application
+**Tool:** React, Node.js, Express, Python, Machine Learning | **Type:** Full-Stack Web Application
 
-> ✈️ AirVista is an intelligent flight price prediction system built using RandomForest Regressor optimized with SelectKBest feature selection — achieving 83.27% accuracy with a complete ML pipeline covering data cleaning, feature engineering, encoding, and instant predictions via a modern Flask web interface. | Domain: Data Analysis
-
----
-
-## 🗂️ Project Overview
-
-**AirVista** is a lightweight yet powerful Flight Price Prediction web app designed around real Indian domestic flight patterns. It follows a complete machine learning workflow — from raw data cleaning to live deployment — delivering instant ticket price predictions through a smooth, responsive Flask interface.
+> ✈️ AirVista is an intelligent Flight Price Prediction system powered by **XGBoost**, delivering fast and accurate ticket price predictions through a modern **React + Express** architecture. The project includes a complete machine learning pipeline covering data preprocessing, feature engineering, model training, and real-time predictions via a seamless web interface.
 
 ---
 
-## ✅ Highlights
+# 🗂️ Project Overview
 
-- ✔️ RandomForest (KBest-optimized) chosen as the best-performing model
-- ✔️ Achieves 83.27% accuracy on test data
-- ✔️ Uses SelectKBest (f_regression) to extract the most impactful features
-- ✔️ Complete preprocessing pipeline (cleaning, encoding, time extraction, duration parsing)
-- ✔️ Instant predictions through a smooth Flask web interface
-- ✔️ Fully structured, lightweight, and easy to deploy on Render / Vercel / Railway
-- ✔️ Designed using real patterns of Indian domestic flight data
+AirVista is a full-stack machine learning application designed to predict Indian domestic flight prices based on user inputs such as airline, source, destination, departure time, arrival time, total stops, and journey date.
+
+The project combines a modern React frontend with an Express backend that communicates with a Python prediction engine using `child_process.spawn()`. The trained XGBoost model processes the input and returns accurate flight price predictions in real time.
 
 ---
 
-## ✨ Features
+# ✅ Highlights
 
-### 🎯 ML-Powered Price Prediction
-- RandomForest Regressor optimized with SelectKBest feature selection
-- Achieves 83.27% prediction accuracy on test data
-- Selects only the most impactful features using `f_regression` scoring
-
-### 🧹 Complete Preprocessing Pipeline
-- Data cleaning and handling of missing/inconsistent values
-- Time and route feature engineering (departure hour, duration parsing)
-- Categorical encoding for airline, source, destination, and stops
-
-### 🌐 Flask Web Interface
-- Modern, responsive UI for seamless user interaction
-- Users can select airline, route, departure time, and number of stops
-- Instant price prediction output with no page reload delays
-
-### 🚀 Deployment Ready
-- Lightweight and structured for easy hosting
-- Compatible with Render, Vercel, and Railway platforms
+- ✔️ XGBoost Regressor for accurate flight price prediction
+- ✔️ Full-stack architecture (React + Express + Python)
+- ✔️ Modern responsive React interface
+- ✔️ Real-time predictions using Python backend
+- ✔️ Complete preprocessing & feature engineering pipeline
+- ✔️ REST API powered by Express
+- ✔️ Easy deployment on Vercel + Render
+- ✔️ Based on real Indian domestic flight data
 
 ---
 
-## 🛠️ Tech Stack
+# ✨ Features
+
+## 🎯 Machine Learning Prediction
+
+- XGBoost Regressor
+- Real-time flight price prediction
+- Trained on Indian domestic flight dataset
+- Optimized preprocessing pipeline
+
+## 🧹 Data Processing
+
+- Missing value handling
+- Date & time feature extraction
+- Duration parsing
+- Airline encoding
+- Source & destination encoding
+- Total stops encoding
+
+## 🌐 Modern Web Interface
+
+- React frontend
+- Responsive UI
+- Instant prediction results
+- User-friendly design
+
+## ⚙️ Express Backend
+
+- REST API
+- Executes Python prediction script using child_process.spawn()
+- Returns prediction results as JSON
+
+## 🚀 Deployment Ready
+
+- Frontend deployed on Vercel
+- Backend deployed on Render
+- Easily portable to Railway or other cloud platforms
+
+---
+
+# 🛠️ Tech Stack
 
 | Layer | Technology |
-|---|---|
-| **Backend** | Python, Flask |
-| **ML Model** | RandomForest Regressor, SelectKBest |
-| **Data Processing** | Pandas, NumPy |
-| **Feature Selection** | Scikit-learn (f_regression) |
-| **Encoding** | Label Encoding, One-Hot Encoding |
-| **Deployment** | Render / Vercel / Railway |
+|--------|------------|
+| Frontend | React, Vite |
+| Backend | Node.js, Express |
+| Machine Learning | Python, XGBoost |
+| Data Processing | Pandas, NumPy |
+| Model Training | Scikit-learn |
+| API Communication | REST API |
+| Deployment | Vercel + Render |
 
 ---
 
-## 📁 File Structure
+# 📁 Project Structure
 
 ```
 AirVista/
 │
-├── 📄 app.py                        # Flask application entry point
-├── 📄 model.py                      # Model training & prediction logic
-├── 📄 preprocess.py                 # Data cleaning & feature engineering
-├── 📂 templates/
-│   └── index.html                   # Frontend HTML template
-├── 📂 static/
-│   └── style.css                    # Web interface styling
-├── 📂 data/
-│   ├── raw_flights.csv              # Original flight dataset
-│   └── cleaned_flights.csv          # Preprocessed dataset
-├── 📄 requirements.txt              # Python dependencies
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
 │
-└── 📄 README.md                     # Project documentation
+├── backend/
+│   ├── server.js
+│   ├── predict.py
+│   ├── package.json
+│   └── requirements.txt
+│
+├── best_model.json
+├── mappings.json
+├── flights.csv
+└── README.md
 ```
 
 ---
 
-## 🚀 Getting Started
+# 🚀 Getting Started
 
-### Prerequisites
-- Python 3.8 or later
-- Libraries: `flask`, `pandas`, `numpy`, `scikit-learn`
+## Prerequisites
+
+- Node.js
+- Python 3.10+
+- npm
+
+Install backend dependencies
+
+```bash
+cd backend
+npm install
+```
+
+Install Python dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-### How to Run Locally
-1. **Clone** the repository
-2. **Install** dependencies
+Install frontend dependencies
+
 ```bash
-pip install -r requirements.txt
+cd frontend
+npm install
 ```
-3. **Run** the Flask app
+
+---
+
+## Run Backend
+
 ```bash
-python app.py
-```
-4. **Open** `http://localhost:5000` in your browser
-
----
-
-## 📌 Key Concepts Covered
-
-- **RandomForest Regressor** — ensemble learning for regression tasks
-- **SelectKBest** — statistical feature selection using f_regression
-- **Feature Engineering** — extracting time, duration, and route features
-- **Categorical Encoding** — Label & One-Hot encoding for ML compatibility
-- **Flask Deployment** — building and hosting a Python ML web app
-- **Indian Flight Data** — real-world domestic route and pricing patterns
-
----
-
-## 📷 App Preview
-
-> *(Add screenshots of the web interface here)*
-
-```
-[ App Screenshot Placeholder ]
+cd backend
+npm start
 ```
 
 ---
 
-## 🎯 Learning Outcomes
+## Run Frontend
 
-- Built an **optimized ML pipeline** with feature selection for better accuracy
-- Learned **time and route feature engineering** on real flight datasets
-- Developed a **responsive Flask web app** for live price predictions
-- Gained experience in **model evaluation and deployment** on cloud platforms
-
----
-
-## 🤝 Connect
-
-Feel free to explore, fork, or give feedback!
-If you found this helpful, don't forget to ⭐ the repo!
+```bash
+cd frontend
+npm run dev
+```
 
 ---
 
-*#MachineLearning #FlightPricePrediction #RandomForest #Flask #Python #DataAnalysis #FeatureEngineering #Deployment*
+## Open
+
+```
+http://localhost:5173
+```
+
+---
+
+# 📌 Machine Learning Pipeline
+
+- Data Cleaning
+- Feature Engineering
+- Date & Time Processing
+- Duration Extraction
+- Airline Encoding
+- Source & Destination Encoding
+- XGBoost Training
+- Real-Time Prediction
+
+---
+
+# 📷 Application Preview
+
+### Home Page
+
+*(Add Screenshot Here)*
+
+---
+
+### Prediction Page
+
+*(Add Screenshot Here)*
+
+---
+
+### Prediction Result
+
+*(Add Screenshot Here)*
+
+---
+
+# 🎯 Learning Outcomes
+
+- Built a complete Full-Stack Machine Learning application
+- Integrated React with Express backend
+- Connected Node.js with Python using child_process.spawn()
+- Implemented real-time ML prediction API
+- Worked with XGBoost regression models
+- Performed feature engineering and preprocessing
+- Deployed a hybrid Node.js + Python application
+
+---
+
+# 🤝 Connect
+
+Feel free to explore, fork, or contribute to this project.
+
+If you found this project useful, don't forget to ⭐ the repository!
+
+---
+
+**Tags**
+
+`Machine Learning` `Flight Price Prediction` `XGBoost` `React` `Node.js` `Express` `Python` `Data Science` `Full Stack` `REST API`
