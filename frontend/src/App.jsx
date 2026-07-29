@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-const API_BASE_URL = 'http://localhost:5000';
+// Dynamic API URL for local and production deployment
+const API_BASE_URL = process.env.NODE_ENV === 'production'
+  ? 'https://flight-prices-prediction-backend.onrender.com'
+  : 'http://localhost:5000';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');
@@ -193,7 +196,7 @@ function App() {
       {activeTab === 'home' && (
         <div>
           <section className="hero">
-            <video className="hero-video" autoPlay muted playsInline>
+            <video className="hero-video" autoPlay muted playsInline loop>
               <source src={`${API_BASE_URL}/static/apl.mp4`} type="video/mp4" />
             </video>
             <div className="video-overlay"></div>
