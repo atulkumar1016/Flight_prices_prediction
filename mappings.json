@@ -1,0 +1,48 @@
+{
+    "Airline": {
+        "Air Asia": 0,
+        "Air India": 1,
+        "GoAir": 2,
+        "IndiGo": 3,
+        "Jet Airways": 4,
+        "Jet Airways Business": 5,
+        "Multiple carriers": 6,
+        "Multiple carriers Premium economy": 7,
+        "SpiceJet": 8,
+        "Trujet": 9,
+        "Vistara": 10,
+        "Vistara Premium economy": 11
+    },
+    "Source": {
+        "Banglore": 0,
+        "Chennai": 1,
+        "Delhi": 2,
+        "Kolkata": 3,
+        "Mumbai": 4
+    },
+    "Destination": {
+        "Banglore": 0,
+        "Cochin": 1,
+        "Delhi": 2,
+        "Hyderabad": 3,
+        "Kolkata": 4
+    },
+    "Additional_Info": {
+        "1 Long layover": 0,
+        "1 Short layover": 1,
+        "2 Long layover": 2,
+        "Business class": 3,
+        "Change airports": 4,
+        "In-flight meal not included": 5,
+        "No check-in baggage included": 6,
+        "No info": 7,
+        "Red-eye flight": 8
+    },
+    "Total_Stops": {
+        "non-stop": 0,
+        "1 stop": 1,
+        "2 stops": 2,
+        "3 stops": 3,
+        "4 stops": 4
+    }
+}

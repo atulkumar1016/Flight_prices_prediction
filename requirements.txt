@@ -1,0 +1,7 @@
+# For retraining the model (train_models.py / project.ipynb)
+numpy
+pandas
+scikit-learn
+xgboost
+matplotlib
+seaborn

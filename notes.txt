@@ -1,0 +1,12 @@
+
+
+-> Interviews
+--- -------------------------------------------------------------------------------------------------
+Ques: Dataset me kitne columns the?
+
+Ans:  "Sir, dataset me total 11 columns the. Inme se Airline, Source, Destination, Date of Journey, 
+Departure Time, Duration aur Total Stops sabse important features the. Price hamara target variable 
+tha jise predict karna tha."
+
+------------------------------------------------------------------------------------------------------
+
