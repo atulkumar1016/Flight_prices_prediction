@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Pin exact Python package versions to match training environment
 # xgboost 3.3.0 | pandas 3.0.3 | numpy 2.5.1 | scikit-learn latest
-RUN pip3 install --no-cache-dir --break-system-packages \
+RUN pip3 install --no-cache-dir \
     "numpy==2.5.1" \
     "pandas==3.0.3" \
     "xgboost==3.3.0" \
