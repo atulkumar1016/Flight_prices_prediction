@@ -173,25 +173,6 @@ http://localhost:5173
 
 ---
 
-# 📷 Application Preview
-
-### Home Page
-
-*(Add Screenshot Here)*
-
----
-
-### Prediction Page
-
-*(Add Screenshot Here)*
-
----
-
-### Prediction Result
-
-*(Add Screenshot Here)*
-
----
 
 # 🎯 Learning Outcomes
 
