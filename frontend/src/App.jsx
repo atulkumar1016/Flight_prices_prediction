@@ -197,7 +197,7 @@ function App() {
         <div>
           <section className="hero">
             <video className="hero-video" autoPlay muted playsInline loop>
-              <source src={`${API_BASE_URL}/static/apl.mp4`} type="video/mp4" />
+              <source src={`/apl.mp4`} type="video/mp4" />
             </video>
             <div className="video-overlay"></div>
             <div className="hero-content">
@@ -240,7 +240,7 @@ function App() {
             <div className="section-container">
               <h2 className="section-title">Supported Airlines</h2>
               <div className="airlines-grid">
-                <div className="airline-card"><img src={`${API_BASE_URL}/static/indigo.png`} alt="IndiGo" /><div className="airline-name">IndiGo</div></div>
+                <div className="airline-card"><img src={`/indigo.png`} alt="IndiGo" /><div className="airline-name">IndiGo</div></div>
                 <div className="airline-card"><img src={`${API_BASE_URL}/static/airindia.png`} alt="Air India" /><div className="airline-name">Air India</div></div>
                 <div className="airline-card"><img src={`${API_BASE_URL}/static/Vistara.png`} alt="Vistara" /><div className="airline-name">Vistara</div></div>
                 <div className="airline-card"><img src={`${API_BASE_URL}/static/SpiceJet.png`} alt="SpiceJet" /><div className="airline-name">SpiceJet</div></div>
