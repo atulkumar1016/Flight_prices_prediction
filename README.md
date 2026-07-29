@@ -196,4 +196,4 @@ If you found this project useful, don't forget to ⭐ the repository!
 
 **Tags**
 
-`Machine Learning` `Flight Price Prediction` `XGBoost` `React` `Node.js` `Express` `Python` `Data Science` `Full Stack` `REST API`
+`Machine Learning` `Flight Price Prediction` `XGBoost` `React` `Node.js` `Express` `Python` `Data Science` `Full Stack` 
