@@ -1,6 +1,6 @@
-FROM node:20-bullseye-slim
+FROM node:20-bookworm-slim
 
-# Install system dependencies
+# Install system dependencies (Debian 12 / Python 3.11)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     python3 \
     python3-pip \
@@ -8,13 +8,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     && rm -rf /var/lib/apt/lists/*
 
-# Pin exact Python package versions to match training environment
-# xgboost 3.3.0 | pandas 3.0.3 | numpy 2.5.1 | scikit-learn latest
-RUN pip3 install --no-cache-dir \
-    "numpy==2.5.1" \
-    "pandas==3.0.3" \
-    "xgboost==3.3.0" \
-    "scikit-learn"
+# Install Python packages (no strict pinning — XGBoost JSON format is cross-version compatible)
+RUN pip3 install --no-cache-dir --break-system-packages \
+    numpy \
+    pandas \
+    xgboost \
+    scikit-learn
 
 # Set working directory to /app
 WORKDIR /app
