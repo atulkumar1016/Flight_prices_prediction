@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-// Dynamic API URL for local and production deployment
+// Dynamic API URL — empty string in production (same origin), localhost in dev
 const API_BASE_URL = process.env.NODE_ENV === 'production'
-  ? 'https://flight-prices-prediction-backend.onrender.com'
+  ? ''
   : 'http://localhost:5000';
 
 function App() {
