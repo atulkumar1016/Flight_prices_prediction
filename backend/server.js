@@ -16,6 +16,14 @@ const staticPath = path.join(__dirname, '../static');
 app.use('/static', express.static(staticPath));
 console.log(`[INFO] Serving static files from: ${staticPath}`);
 
+// Serve built React frontend at root
+const frontendDist = path.join(__dirname, '../frontend/dist');
+if (fs.existsSync(frontendDist)) {
+    app.use(express.static(frontendDist));
+    console.log(`[INFO] Serving frontend from: ${frontendDist}`);
+}
+
+
 // CSV parsing helper
 function parseCSV(filePath, limit = 100) {
     if (!fs.existsSync(filePath)) {
@@ -200,6 +208,13 @@ app.post('/api/predict', (req, res) => {
     });
 
 });
+
+// SPA fallback — serve React index.html for any unknown route
+if (fs.existsSync(frontendDist)) {
+    app.get('*', (req, res) => {
+        res.sendFile(path.join(frontendDist, 'index.html'));
+    });
+}
 
 // Start Server
 app.listen(PORT, () => {

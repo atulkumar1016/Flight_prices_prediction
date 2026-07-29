@@ -22,6 +22,10 @@ WORKDIR /app
 # Copy codebase
 COPY . .
 
+# Build React frontend (outputs to /app/frontend/dist)
+WORKDIR /app/frontend
+RUN npm install && npm run build
+
 # Install backend Node.js packages
 WORKDIR /app/backend
 RUN npm install --omit=dev
