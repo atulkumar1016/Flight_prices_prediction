@@ -1,29 +1,31 @@
 # ✈️ AirVista — Flight Price Prediction
 
-**Tool:** React, Node.js, Express, Python, Machine Learning | **Type:** Full-Stack Web Application
+**Stack:** React · Node.js · Express · Python · XGBoost · Docker &nbsp;|&nbsp; **Type:** Full-Stack Machine Learning Web Application
 
-> ✈️ AirVista is an intelligent Flight Price Prediction system powered by **XGBoost**, delivering fast and accurate ticket price predictions through a modern **React + Express** architecture. The project includes a complete machine learning pipeline covering data preprocessing, feature engineering, model training, and real-time predictions via a seamless web interface.
+> AirVista is an intelligent Flight Price Prediction system powered by **XGBoost**, delivering fast and accurate ticket price predictions through a modern **React + Express** architecture. The project includes a complete machine learning pipeline covering data preprocessing, feature engineering, model training, and real-time predictions through a seamless web interface.
 
 ---
 
 # 🗂️ Project Overview
 
-AirVista is a full-stack machine learning application designed to predict Indian domestic flight prices based on user inputs such as airline, source, destination, departure time, arrival time, total stops, and journey date.
+AirVista is a full-stack machine learning application designed to predict Indian domestic flight prices based on user inputs such as source city, destination city, departure time, arrival time, and journey date.
 
-The project combines a modern React frontend with an Express backend that communicates with a Python prediction engine using `child_process.spawn()`. The trained XGBoost model processes the input and returns accurate flight price predictions in real time.
+The application combines a **React (Vite)** frontend with an **Express** backend that communicates with a Python prediction engine using `child_process.spawn()`. The trained **XGBoost** model processes the input and returns accurate flight price predictions in real time.
+
+The project is fully containerized using **Docker**, providing a consistent development and deployment environment.
 
 ---
 
 # ✅ Highlights
 
-- ✔️ XGBoost Regressor for accurate flight price prediction
-- ✔️ Full-stack architecture (React + Express + Python)
+- ✔️ XGBoost Regressor (~89.7% R² Score) for flight price prediction
+- ✔️ Full-stack architecture using React, Express, and Python
+- ✔️ Dockerized application for simplified deployment
 - ✔️ Modern responsive React interface
-- ✔️ Real-time predictions using Python backend
+- ✔️ Real-time predictions using Python and `child_process.spawn()`
 - ✔️ Complete preprocessing & feature engineering pipeline
 - ✔️ REST API powered by Express
-- ✔️ Easy deployment on Vercel + Render
-- ✔️ Based on real Indian domestic flight data
+- ✔️ Trained on real Indian domestic flight dataset (10,683 records)
 
 ---
 
@@ -35,34 +37,51 @@ The project combines a modern React frontend with an Express backend that commun
 - Real-time flight price prediction
 - Trained on Indian domestic flight dataset
 - Optimized preprocessing pipeline
+- Instant prediction results
 
-## 🧹 Data Processing
+---
+
+## 🧹 Data Processing Pipeline
 
 - Missing value handling
+- Duplicate removal
 - Date & time feature extraction
 - Duration parsing
 - Airline encoding
 - Source & destination encoding
 - Total stops encoding
+- Dictionary-based label mappings (`mappings.json`)
+
+---
 
 ## 🌐 Modern Web Interface
 
-- React frontend
+- React (Vite) Single Page Application
 - Responsive UI
+- Dark-themed interface
 - Instant prediction results
-- User-friendly design
+- Dataset preview
+- Interactive data visualization charts
+
+---
 
 ## ⚙️ Express Backend
 
 - REST API
-- Executes Python prediction script using child_process.spawn()
-- Returns prediction results as JSON
+- Python integration using `child_process.spawn()`
+- JSON-based request & response
+- Static frontend serving (Production)
+- React Router SPA fallback
 
-## 🚀 Deployment Ready
+---
 
-- Frontend deployed on Vercel
-- Backend deployed on Render
-- Easily portable to Railway or other cloud platforms
+## 🐳 Docker Support
+
+- Single Docker container
+- Node.js + Python runtime
+- Production-ready Docker image
+- Consistent development environment
+- Easy deployment across platforms
 
 ---
 
@@ -76,18 +95,23 @@ The project combines a modern React frontend with an Express backend that commun
 | Data Processing | Pandas, NumPy |
 | Model Training | Scikit-learn |
 | API Communication | REST API |
-| Deployment | Vercel + Render |
+| Containerization | Docker |
+| Deployment | Render, Railway, Fly.io |
 
 ---
 
 # 📁 Project Structure
 
-```
+```text
 AirVista/
 │
 ├── frontend/
 │   ├── src/
+│   │   ├── App.jsx
+│   │   └── App.css
 │   ├── public/
+│   ├── index.html
+│   ├── vite.config.js
 │   └── package.json
 │
 ├── backend/
@@ -96,9 +120,15 @@ AirVista/
 │   ├── package.json
 │   └── requirements.txt
 │
+├── static/
+│
 ├── best_model.json
 ├── mappings.json
 ├── flights.csv
+├── requirements.txt
+├── Dockerfile
+├── start.bat
+├── .gitignore
 └── README.md
 ```
 
@@ -108,51 +138,71 @@ AirVista/
 
 ## Prerequisites
 
-- Node.js
+- Node.js (v18 or above)
 - Python 3.10+
 - npm
+- Docker (Optional)
 
-Install backend dependencies
+---
+
+## 1. Clone Repository
 
 ```bash
-cd backend
-npm install
+git clone https://github.com/atulkumar1016/Flight_prices_prediction.git
+cd AirVista
 ```
 
-Install Python dependencies
+---
+
+## 2. Install Python Dependencies
 
 ```bash
 pip install -r requirements.txt
 ```
 
-Install frontend dependencies
+or
+
+```bash
+pip install -r backend/requirements.txt
+```
+
+---
+
+## 3. Start Backend
+
+```bash
+cd backend
+npm install
+npm start
+```
+
+Backend runs at:
+
+```
+http://localhost:5000
+```
+
+---
+
+## 4. Start Frontend
 
 ```bash
 cd frontend
 npm install
-```
-
----
-
-## Run Backend
-
-```bash
-cd backend
-npm start
-```
-
----
-
-## Run Frontend
-
-```bash
-cd frontend
 npm run dev
 ```
 
+Frontend runs at:
+
+```
+http://localhost:5173
+```
+
+(Vite automatically proxies `/api/*` requests to the backend.)
+
 ---
 
-## Open
+## 5. Open Application
 
 ```
 http://localhost:5173
@@ -160,40 +210,150 @@ http://localhost:5173
 
 ---
 
+# ⚡ Windows Quick Start
+
+Run
+
+```bash
+start.bat
+```
+
+This automatically starts both frontend and backend in separate terminal windows.
+
+---
+
+# 🐳 Run with Docker
+
+## Build Docker Image
+
+```bash
+docker build -t airvista .
+```
+
+## Run Container
+
+```bash
+docker run -p 5000:5000 airvista
+```
+
+Open:
+
+```
+http://localhost:5000
+```
+
+The Docker image builds the React frontend, installs all Node.js and Python dependencies, and serves the frontend and backend from a single Express server.
+
+---
+
 # 📌 Machine Learning Pipeline
 
 - Data Cleaning
+- Missing Value Handling
+- Duplicate Removal
 - Feature Engineering
 - Date & Time Processing
 - Duration Extraction
 - Airline Encoding
-- Source & Destination Encoding
-- XGBoost Training
+- Source Encoding
+- Destination Encoding
+- Total Stops Encoding
+- XGBoost Model Training
+- Model Evaluation
 - Real-Time Prediction
 
 ---
 
+# 🔌 API Reference
+
+## POST `/api/predict`
+
+Predicts flight prices based on user inputs.
+
+### Request
+
+```json
+{
+  "source_code": "DEL",
+  "dest_code": "BLR",
+  "day": 15,
+  "month": 8,
+  "year": 2026,
+  "dep_hour": 10,
+  "arr_hour": 13
+}
+```
+
+### Response
+
+```json
+{
+  "route": "DEL -> BLR",
+  "journey_date": "15-8-2026",
+  "results": [
+    {
+      "airline_name": "GoAir",
+      "price": 5071.93,
+      "duration": 180
+    },
+    {
+      "airline_name": "IndiGo",
+      "price": 5571.88,
+      "duration": 180
+    }
+  ]
+}
+```
+
+---
+
+## GET `/api/dataset`
+
+Returns a preview of the flight dataset.
+
+---
+
+# 🛫 Supported Airports
+
+The prediction model supports flights across major Indian airports, including:
+
+- Delhi (DEL)
+- Mumbai (BOM)
+- Bangalore (BLR)
+- Kolkata (CCU)
+- Hyderabad (HYD)
+- Chennai (MAA)
+- Cochin (COK)
+
+---
 
 # 🎯 Learning Outcomes
 
 - Built a complete Full-Stack Machine Learning application
-- Integrated React with Express backend
-- Connected Node.js with Python using child_process.spawn()
-- Implemented real-time ML prediction API
+- Integrated React frontend with Express backend
+- Connected Node.js with Python using `child_process.spawn()`
+- Implemented a real-time ML prediction API
 - Worked with XGBoost regression models
-- Performed feature engineering and preprocessing
-- Deployed a hybrid Node.js + Python application
+- Performed feature engineering and preprocessing on real flight data
+- Containerized a hybrid Node.js + Python application using Docker
+- Built and deployed a production-ready Machine Learning web application
 
 ---
 
-# 🤝 Connect
+# 🤝 Contributing
 
-Feel free to explore, fork, or contribute to this project.
+Contributions, suggestions, and improvements are welcome.
 
-If you found this project useful, don't forget to ⭐ the repository!
+Feel free to fork the repository and submit a pull request.
 
 ---
 
-**Tags**
+# ⭐ Support
 
-`Machine Learning` `Flight Price Prediction` `XGBoost` `React` `Node.js` `Express` `Python` `Data Science` `Full Stack` 
+If you found this project useful, please consider giving it a ⭐ on GitHub.
+
+---
+
+# 🏷️ Tags
+
+`Machine Learning` `Flight Price Prediction` `XGBoost` `React` `Node.js` `Express` `Python` `Docker` `Data Science` `Full Stack`
