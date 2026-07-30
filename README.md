@@ -1,258 +1,112 @@
 # ✈️ AirVista — Flight Price Prediction
 
-**Tool:** React, Node.js, Express, Python, Machine Learning, Docker | **Type:** Full-Stack Web Application
+**Stack:** React · Node.js · Express · Python · XGBoost · Docker &nbsp;|&nbsp; **Type:** Full-Stack ML Web Application
 
-> ✈️ AirVista is an intelligent Flight Price Prediction system powered by **XGBoost**, delivering fast and accurate ticket price predictions through a modern **React + Express** architecture. The project includes a complete machine learning pipeline covering data preprocessing, feature engineering, model training, and real-time predictions via a seamless web interface.
-
----
-
-# 🗂️ Project Overview
-
-AirVista is a full-stack machine learning application designed to predict Indian domestic flight prices based on user inputs such as airline, source, destination, departure time, arrival time, total stops, and journey date.
-
-The project combines a modern React frontend with an Express backend that communicates with a Python prediction engine using `child_process.spawn()`. The trained XGBoost model processes the input and returns accurate flight price predictions in real time.
-
-The application is fully containerized using **Docker** and **Docker Compose**, making it easy to set up, run, and deploy consistently across different environments.
+> AirVista is an intelligent Flight Price Prediction system powered by **XGBoost**, delivering fast and accurate ticket price predictions through a modern **React + Express** architecture. The project includes a complete machine learning pipeline covering data preprocessing, feature engineering, model training, and real-time predictions via a seamless web interface.
 
 ---
 
-# ✅ Highlights
+## 🗂️ Project Overview
 
-- ✔️ XGBoost Regressor for accurate flight price prediction
-- ✔️ Full-stack architecture (React + Express + Python)
-- ✔️ Dockerized application using Docker Compose
-- ✔️ Modern responsive React interface
-- ✔️ Real-time predictions using Python backend
+AirVista is a full-stack machine learning application designed to predict Indian domestic flight prices based on user inputs such as source city, destination city, departure time, and journey date.
+
+The project combines a **React (Vite)** frontend with an **Express** backend that communicates with a Python prediction engine using `child_process.spawn()`. The trained **XGBoost** model processes the input and returns accurate price predictions for 9 major Indian airlines in real time.
+
+The application is fully containerized using **Docker**, making it easy to set up, run, and deploy consistently across different environments.
+
+---
+
+## ✅ Highlights
+
+- ✔️ XGBoost Regressor (~90% R² accuracy) for flight price prediction
+- ✔️ Full-stack architecture: React + Express + Python
+- ✔️ Dockerized into a single container (Node + Python)
+- ✔️ Modern dark-themed responsive React interface
+- ✔️ Real-time predictions via Python `child_process.spawn()`
 - ✔️ Complete preprocessing & feature engineering pipeline
 - ✔️ REST API powered by Express
-- ✔️ Easy deployment on Vercel + Render
-- ✔️ Based on real Indian domestic flight data
+- ✔️ Based on real Indian domestic flight data (10,683 records)
+- ✔️ Supports 9 major airlines across 7 Indian cities
 
 ---
 
-# ✨ Features
+## ✨ Features
 
-## 🎯 Machine Learning Prediction
+### 🎯 ML-Powered Price Prediction
+- XGBoost Regressor trained on 10,683 real flight records
+- Predicts prices for 9 airlines simultaneously
+- Sorted by price — cheapest to most expensive
+- Highlights best value and most expensive options
 
-- XGBoost Regressor
-- Real-time flight price prediction
-- Trained on Indian domestic flight dataset
-- Optimized preprocessing pipeline
+### 🧹 Data Processing Pipeline
+- Missing value handling and duplicate removal
+- Date & time feature extraction (hour, day, month, weekday)
+- Duration parsing and conversion to minutes
+- Airline, source, destination, and stops encoding
+- Dictionary-based label mappings (`mappings.json`)
 
-## 🧹 Data Processing
+### 🌐 Modern Web Interface
+- Dark-themed React SPA with smooth animations
+- Dataset Preview tab with paginated flight data table
+- Data Insights tab with 7 EDA charts (click to enlarge)
+- FlySmart Predictor with instant multi-airline results
+- Fully responsive layout
 
-- Missing value handling
-- Date & time feature extraction
-- Duration parsing
-- Airline encoding
-- Source & destination encoding
-- Total stops encoding
+### ⚙️ Express Backend
+- REST API with `/api/predict` and `/api/dataset` endpoints
+- Spawns Python prediction script via `child_process.spawn()`
+- Serves static assets and built React frontend
+- SPA fallback routing for React Router
 
-## 🌐 Modern Web Interface
-
-- React frontend
-- Responsive UI
-- Instant prediction results
-- User-friendly design
-
-## ⚙️ Express Backend
-
-- REST API
-- Executes Python prediction script using `child_process.spawn()`
-- Returns prediction results as JSON
-
-## 🐳 Docker Support
-
-- Dockerized frontend
-- Dockerized backend
-- Docker Compose orchestration
-- Consistent development environment
-- Easy local setup
-
-## 🚀 Deployment Ready
-
-- Frontend deployed on Vercel
-- Backend deployed on Render
-- Easily portable to Railway or other cloud platforms
+### 🐳 Docker Support
+- Single multi-stage Dockerfile (Node 20 + Python 3.11)
+- Builds React frontend and installs Node/Python dependencies
+- Runs the Express server which serves both frontend and API
+- No Docker Compose needed — single container, single port
 
 ---
 
-# 🛠️ Tech Stack
+## 🛠️ Tech Stack
 
 | Layer | Technology |
-|--------|------------|
-| Frontend | React, Vite |
-| Backend | Node.js, Express |
+|---|---|
+| Frontend | React 19, Vite 8 |
+| Backend | Node.js 20, Express 4 |
 | Machine Learning | Python, XGBoost |
 | Data Processing | Pandas, NumPy |
-| Model Training | Scikit-learn |
-| API Communication | REST API |
-| Containerization | Docker, Docker Compose |
-| Deployment | Vercel + Render |
+| Model Format | XGBoost native JSON (`best_model.json`) |
+| Containerization | Docker (node:20-bookworm-slim) |
+| Deployment | Render / Railway / Fly.io |
 
 ---
 
-# 📁 Project Structure
+## 📁 Project Structure
 
 ```text
 AirVista/
 │
-├── frontend/
+├── 📂 frontend/               # React (Vite) SPA
 │   ├── src/
-│   ├── public/
-│   ├── Dockerfile
+│   │   ├── App.jsx            # Main app component
+│   │   └── App.css            # Styles
+│   ├── public/                # Static assets (logos, charts, videos)
+│   ├── index.html
+│   ├── vite.config.js         # Vite config with dev proxy
 │   └── package.json
 │
-├── backend/
-│   ├── server.js
-│   ├── predict.py
-│   ├── Dockerfile
-│   ├── package.json
-│   └── requirements.txt
+├── 📂 backend/                # Express server
+│   ├── server.js              # API routes + static file serving
+│   ├── predict.py             # XGBoost prediction script
+│   ├── requirements.txt       # Python dependencies
+│   └── package.json
 │
-├── best_model.json
-├── mappings.json
-├── flights.csv
-├── docker-compose.yml
-├── .dockerignore
+├── 📂 static/                 # Charts, airline logos, videos
+│
+├── best_model.json            # Trained XGBoost model (native format)
+├── mappings.json              # Label encoding mappings
+├── flights.csv                # Raw dataset (10,683 records)
+├── requirements.txt           # Root Python dependencies
+├── Dockerfile                 # Single-container Docker build
+├── start.bat                  # Windows one-click local startup
 ├── .gitignore
 └── README.md
-```
-
----
-
-# 🚀 Getting Started
-
-## Prerequisites
-
-- Node.js
-- Python 3.10+
-- npm
-- Docker (Optional)
-
----
-
-## Install Backend Dependencies
-
-```bash
-cd backend
-npm install
-```
-
----
-
-## Install Python Dependencies
-
-```bash
-pip install -r requirements.txt
-```
-
----
-
-## Install Frontend Dependencies
-
-```bash
-cd frontend
-npm install
-```
-
----
-
-## Run Backend
-
-```bash
-cd backend
-npm start
-```
-
----
-
-## Run Frontend
-
-```bash
-cd frontend
-npm run dev
-```
-
----
-
-## Open
-
-```
-http://localhost:5173
-```
-
----
-
-# 🐳 Run with Docker
-
-## Build and Start Containers
-
-```bash
-docker-compose up --build
-```
-
-## Run in Background
-
-```bash
-docker-compose up -d
-```
-
-## Stop Containers
-
-```bash
-docker-compose down
-```
-
----
-
-# 📌 Machine Learning Pipeline
-
-- Data Cleaning
-- Feature Engineering
-- Date & Time Processing
-- Duration Extraction
-- Airline Encoding
-- Source Encoding
-- Destination Encoding
-- Total Stops Encoding
-- XGBoost Training
-- Real-Time Prediction
-
----
-
-# 🎯 Learning Outcomes
-
-- Built a complete Full-Stack Machine Learning application
-- Integrated React with Express backend
-- Connected Node.js with Python using `child_process.spawn()`
-- Implemented real-time ML prediction API
-- Worked with XGBoost regression models
-- Performed feature engineering and preprocessing
-- Containerized the application using Docker
-- Orchestrated multiple services with Docker Compose
-- Deployed a hybrid Node.js + Python application
-
----
-
-# 🤝 Connect
-
-Feel free to explore, fork, or contribute to this project.
-
-If you found this project useful, don't forget to ⭐ the repository!
-
----
-
-## 🏷️ Tags
-
-`Machine Learning`
-`Flight Price Prediction`
-`XGBoost`
-`React`
-`Node.js`
-`Express`
-`Python`
-`Data Science`
-`Full Stack`
-`Docker`
-`Docker Compose`
