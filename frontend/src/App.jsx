@@ -4,8 +4,7 @@ import './App.css';
 // Always use same-origin API requests:
 // - In dev mode: Vite proxy forwards /api/* to http://localhost:5000
 // - In production: Express serves both frontend and /api/* on the same port
-const API_BASE_URL = '';
-
+const API_BASE_URL = "https://airvista-prediction.onrender.com";
 function App() {
   const [activeTab, setActiveTab] = useState('home');
 
