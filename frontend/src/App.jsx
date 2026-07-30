@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 
-// Dynamic API URL — empty string in production (same origin), localhost in dev
-const API_BASE_URL = process.env.NODE_ENV === 'production'
-  ? ''
-  : 'http://localhost:5000';
+// Always use same-origin API requests:
+// - In dev mode: Vite proxy forwards /api/* to http://localhost:5000
+// - In production: Express serves both frontend and /api/* on the same port
+const API_BASE_URL = '';
 
 function App() {
   const [activeTab, setActiveTab] = useState('home');

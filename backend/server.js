@@ -179,15 +179,20 @@ app.post('/api/predict', (req, res) => {
     pyProcess.on('close', (code) => {
 
         if (code !== 0) {
+            // predict.py writes errors to stdout as {"error": "..."}, not stderr
+            let errorMessage = stderrData.trim();
+            if (!errorMessage) {
+                try {
+                    const parsed = JSON.parse(stdoutData.trim());
+                    errorMessage = parsed.error || `Prediction script exited with code ${code}`;
+                } catch (_) {
+                    errorMessage = stdoutData.trim() || `Prediction script exited with code ${code}`;
+                }
+            }
             console.error(
-                `[PYTHON ERROR] Exit code: ${code}, Stderr: ${stderrData}`
+                `[PYTHON ERROR] Exit code: ${code}, Error: ${errorMessage}`
             );
-
-            return res.status(500).json({
-                error:
-                    stderrData.trim() ||
-                    `Prediction script exited with code ${code}`
-            });
+            return res.status(500).json({ error: errorMessage });
         }
 
         try {
